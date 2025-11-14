@@ -608,10 +608,10 @@
     <div id="bg-container">
         <!-- Masih mempertahankan elemen video untuk kompatibilitas skrip; video default tetap digunakan -->
         <video id="bg-video" class="bg-media" autoplay muted playsinline>
-            <source src="https://files.catbox.moe/4gi6v5.mp4" type="video/mp4">
+            <source src="https://files.catbox.moe/4t1dr9.mp4" type="video/mp4">
         </video>
         <!-- Gambar latar belakang diganti menjadi gambar Cici P.Ace -->
-        <img id="bg-image" class="bg-media" src="5cc8020d-5259-4542-8e15-61c5d85dce03.png" alt="Cici P.Ace Background">
+        <img id="bg-image" class="bg-media" src="https://i.imghippo.com/files/jdo5235WIA.jpg" alt="Cici P.Ace Background">
     </div>
     <canvas id="particle-canvas"></canvas>
 
@@ -698,10 +698,10 @@
     <!-- Main Content -->
     <main class="container content-layer" style="padding-top: 120px; padding-bottom: 2rem;">
         <header style="text-align: center; margin-bottom: 3rem;">
-            <!-- Profile -->
-            <div class="profile">
-                <img src="5cc8020d-5259-4542-8e15-61c5d85dce03.png" alt="Cici P.Ace Avatar" style="object-position: 50% 25%; will-change: transform;">
-            </div>
+            <!-- Profile (MODIFIKASI: Diubah dari <img> menjadi <video>) --><div class="profile">
+            <!-- Ganti img dengan video, tambahkan object-position --><video src="https://files.catbox.moe/rygge0.mp4" alt="Profile Video" autoplay loop muted playsinline
+                style="object-position: 50% 25%; will-change: transform;"> <!-- [DITAMBAHKAN] Memicu akselerasi GPU --></video>
+        </div>
 
             <!-- Judul Epik -->
             <div style="display: inline-block; margin-bottom: 1.5rem;">

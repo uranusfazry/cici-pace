@@ -362,7 +362,7 @@
                 <!-- Logo (Tombol Light Mode) -->
                 <div id="logo-container" style="display: flex; align-items: center; cursor: pointer; user-select: none;">
                     <img src="https://i.imghippo.com/files/EePl9866XxI.png" alt="Cici Logo" class="logo-pulse" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover;">
-                    <span class="font-cinzel gold-text" style="font-weight: 700; font-size: 1.2rem; margin-left: 1rem; letter-spacing: 0.05em;">MLBB CICI P.ACE</span>
+                    <span class="font-cinzel gold-text" style="font-weight: 700; font-size: 1.2rem; margin-left: 1rem; letter-spacing: 0.05em;">MLBB CICI</span>
                 </div>
 
                 <!-- Desktop Nav -->
@@ -954,21 +954,112 @@
             }
 
             // --- WHATSAPP GENERATOR ---
-            const countries = [
-                {code: "62", name: "Indonesia"}, {code: "60", name: "Malaysia"}, {code: "1", name: "USA"},
-                {code: "65", name: "Singapore"}, {code: "63", name: "Philippines"}, {code: "91", name: "India"},
-                {code: "44", name: "UK"}, {code: "81", name: "Japan"}
+            // 1. DATA NEGARA (DIKELOMPOKKAN PER BENUA)
+            const countryGroups = [
+                {
+                    region: "🌏 ASIA",
+                    countries: [
+                        { code: "62", name: "Indonesia" },
+                        { code: "60", name: "Malaysia" },
+                        { code: "65", name: "Singapore" },
+                        { code: "63", name: "Philippines" },
+                        { code: "66", name: "Thailand" },
+                        { code: "84", name: "Vietnam" },
+                        { code: "82", name: "South Korea" },
+                        { code: "81", name: "Japan" },
+                        { code: "86", name: "China" },
+                        { code: "91", name: "India" },
+                        { code: "92", name: "Pakistan" },
+                        { code: "971", name: "United Arab Emirates (UAE)" },
+                        { code: "966", name: "Saudi Arabia" },
+                        { code: "94", name: "Sri Lanka" },
+                        { code: "880", name: "Bangladesh" },
+                        { code: "98", name: "Iran" },
+                        { code: "964", name: "Iraq" },
+                        { code: "90", name: "Turkey" },
+                        { code: "856", name: "Laos" },
+                        { code: "855", name: "Cambodia" },
+                        { code: "95", name: "Myanmar" },
+                        { code: "853", name: "Macau" },
+                        { code: "852", name: "Hong Kong" }
+                    ]
+                },
+                {
+                    region: "🌍 EUROPE",
+                    countries: [
+                        { code: "44", name: "United Kingdom (UK)" },
+                        { code: "49", name: "Germany" },
+                        { code: "33", name: "France" },
+                        { code: "31", name: "Netherlands" },
+                        { code: "34", name: "Spain" },
+                        { code: "39", name: "Italy" },
+                        { code: "43", name: "Austria" },
+                        { code: "41", name: "Switzerland" },
+                        { code: "45", name: "Denmark" },
+                        { code: "46", name: "Sweden" },
+                        { code: "47", name: "Norway" },
+                        { code: "48", name: "Poland" },
+                        { code: "7", name: "Russia" },
+                        { code: "420", name: "Czech Republic" },
+                        { code: "421", name: "Slovakia" }
+                    ]
+                },
+                {
+                    region: "🌎 AMERICA",
+                    countries: [
+                        { code: "1", name: "USA / Canada" },
+                        { code: "52", name: "Mexico" },
+                        { code: "55", name: "Brazil" },
+                        { code: "54", name: "Argentina" },
+                        { code: "57", name: "Colombia" },
+                        { code: "58", name: "Venezuela" },
+                        { code: "56", name: "Chile" },
+                        { code: "51", name: "Peru" }
+                    ]
+                },
+                {
+                    region: "🌍 AFRICA",
+                    countries: [
+                        { code: "20", name: "Egypt" },
+                        { code: "212", name: "Morocco" },
+                        { code: "234", name: "Nigeria" },
+                        { code: "254", name: "Kenya" },
+                        { code: "27", name: "South Africa" },
+                        { code: "256", name: "Uganda" }
+                    ]
+                },
+                {
+                    region: "🌏 OCEANIA",
+                    countries: [
+                        { code: "61", name: "Australia" },
+                        { code: "64", name: "New Zealand" }
+                    ]
+                }
             ];
             
             function populateCountries() {
                 const sel = document.getElementById('wa-country-code');
-                if (!sel) return; // FIX: Safety check to prevent null error
+                if (!sel) return; 
                 
                 sel.innerHTML = '';
-                countries.forEach(c => {
-                    const opt = document.createElement('option');
-                    opt.value = c.code; opt.textContent = `+${c.code} (${c.name})`;
-                    sel.appendChild(opt);
+                
+                countryGroups.forEach(group => {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = group.region;
+                    optgroup.style.color = "var(--gold)";
+                    optgroup.style.fontFamily = "'Cinzel', serif";
+                    optgroup.style.fontWeight = "bold";
+                    optgroup.style.backgroundColor = "rgba(10, 25, 47, 0.95)";
+
+                    group.countries.forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.value = c.code; 
+                        opt.textContent = `+${c.code} (${c.name})`;
+                        opt.style.color = "#fff";
+                        opt.style.fontFamily = "'Inter', sans-serif";
+                        optgroup.appendChild(opt);
+                    });
+                    sel.appendChild(optgroup);
                 });
             }
 

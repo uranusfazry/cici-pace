@@ -1206,9 +1206,9 @@
             window.backupData = async () => {
                 const dataToBackup = { portals: JSON.parse(localStorage.getItem('portals')) || defaultPortals };
                 try {
-                    const zip = new JSZip(); zip.file("cici_portal_backup.json", JSON.stringify(dataToBackup, null, 2));
+                    const zip = new JSZip(); zip.file("uranusfazry_backup.json", JSON.stringify(dataToBackup, null, 2));
                     const content = await zip.generateAsync({ type: "blob" });
-                    const a = document.createElement('a'); a.href = URL.createObjectURL(content); a.download = 'cici_portal_backup.zip';
+                    const a = document.createElement('a'); a.href = URL.createObjectURL(content); a.download = 'uranusfazry_backup.zip';
                     document.body.appendChild(a); a.click(); document.body.removeChild(a);
                 } catch (e) { window.showNotification('Backup Error', 'Gagal backup.', 'error'); }
             };
@@ -1220,7 +1220,7 @@
                     try {
                         let jsonContent;
                         if (file.name.endsWith(".zip")) {
-                            const zip = await JSZip.loadAsync(e.target.result); jsonContent = await zip.file("cici_portal_backup.json").async("string");
+                            const zip = await JSZip.loadAsync(e.target.result); jsonContent = await zip.file("uranusfazry_backup.json").async("string");
                         } else { jsonContent = e.target.result; }
                         localStorage.setItem('portals', JSON.stringify(JSON.parse(jsonContent).portals));
                         location.reload();

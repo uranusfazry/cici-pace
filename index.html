@@ -1132,6 +1132,11 @@
                 document.getElementById('btn-show-qr').style.display = 'flex'; document.getElementById('qr-content').style.display = 'none';
                 document.getElementById('capacity-container').classList.remove('hide-capacity');
 
+                // Reset status text sebelum kalkulasi
+                document.getElementById('capacity-detail').textContent = "Menghitung...";
+                document.getElementById('capacity-bar').style.width = "0%";
+                document.getElementById('capacity-text').textContent = "0%";
+
                 modal.classList.remove('hidden'); modal.style.display = 'flex';
                 inputField.value = "Generating...";
 
@@ -1140,15 +1145,22 @@
                     const encoded = UrlManager.encode(parsedPortals);
                     if (encoded) {
                         const finalParam = `v5_${encoded}`;
+                        
                         if (finalParam.length > MAX_QR_LENGTH) {
                             document.getElementById('smart-link-modal').style.display = 'none';
                             document.getElementById('limit-warning-modal').classList.remove('hidden');
                             document.getElementById('limit-warning-modal').style.display = 'flex';
                             return;
                         }
-                        const percentage = Math.min(100, Math.round((finalParam.length / MAX_QR_LENGTH) * 100));
-                        document.getElementById('capacity-bar').style.width = percentage + "%";
-                        document.getElementById('capacity-text').textContent = percentage + "%";
+
+                        // --- UPDATE LOGIKA KAPASITAS (FIXED) ---
+                        const used = finalParam.length;
+                        const percent = Math.min(100, Math.round((used / MAX_QR_LENGTH) * 100));
+                        
+                        document.getElementById('capacity-bar').style.width = percent + "%";
+                        document.getElementById('capacity-text').textContent = percent + "%";
+                        document.getElementById('capacity-detail').textContent = `Terpakai: ${used}/${MAX_QR_LENGTH} karakter`;
+                        // ---------------------------------------
                         
                         const finalUrl = `${window.location.origin}${window.location.pathname}?p=${finalParam}`;
                         inputField.value = finalUrl; currentGeneratedUrl = finalUrl;
